@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fffafa">
+<title>VELORIA | BL Drama Platformu</title>
+<style>
+:root{--red:#a80022;--red2:#d51b40;--deep:#650016;--ink:#321820;--muted:#806b70}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Arial,sans-serif;background:linear-gradient(135deg,#fff 0%,#fff5f6 48%,#f0dfe3 100%)}
+a{color:inherit;text-decoration:none}
+button,select,input{font:inherit}
+.wrap{width:min(1240px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:20;padding:10px 0}
+.nav{display:flex;align-items:center;gap:18px;padding:13px 20px;background:rgba(255,255,255,.78);backdrop-filter:blur(20px);border:1px solid white;border-radius:20px;box-shadow:0 8px 28px #6c0b2012}
+.logo{font:bold 30px Georgia,serif;letter-spacing:3px;color:var(--red);white-space:nowrap}
+.logo small{display:block;text-align:center;font:8px Arial;letter-spacing:3px;color:#a45a68;margin-top:2px}
+nav{display:flex;gap:8px;margin:auto}
+nav a{padding:10px 12px;border-radius:22px;color:#75152a;font-size:13px;font-weight:bold}
+nav a:hover,nav a.active{background:var(--red);color:white}
+.search{border:1px solid #efdce0;background:#fff;border-radius:24px;padding:10px 12px;width:165px}
+.search input{border:0;outline:0;width:120px}
+.hero{margin:16px auto 22px;min-height:350px;padding:50px 6%;border-radius:28px;border:1px solid white;box-shadow:0 14px 40px #7c10201a;background:radial-gradient(circle at 80% 50%,#edc3cc 0,transparent 30%),linear-gradient(110deg,rgba(255,255,255,.96),rgba(255,255,255,.55)),linear-gradient(120deg,#f5dce1,#ad1232);display:flex;align-items:center;position:relative;overflow:hidden}
+.hero:after{content:"♡";position:absolute;right:9%;font:clamp(160px,28vw,300px) Georgia;color:#b90d31;opacity:.12}
+.hero-copy{position:relative;z-index:1;max-width:620px}
+.eyebrow{font-size:11px;letter-spacing:4px;color:var(--red);font-weight:bold}
+.hero h1{font:clamp(54px,8vw,92px)/.95 Georgia,serif;color:var(--red);margin:16px 0}
+.hero p{max-width:500px;line-height:1.7;color:#70545c}
+.btn{display:inline-block;border:0;border-radius:24px;background:linear-gradient(100deg,var(--red),var(--red2));color:white;padding:13px 22px;font-weight:bold;cursor:pointer}
+.section{margin:42px auto}
+.heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}
+.heading h2{font:32px Georgia,serif;color:#79142a;margin:7px 0}
+.heading p{margin:0;color:var(--muted);font-size:13px}
+.lang-panel{display:flex;flex-wrap:wrap;gap:12px;background:rgba(255,255,255,.7);border:1px solid white;border-radius:18px;padding:16px;box-shadow:0 8px 25px #6c0b2010}
+.lang-panel label{font-size:12px;color:#7c2437;font-weight:bold;display:block;margin-bottom:6px}
+.lang-panel select{min-width:190px;padding:11px 13px;border-radius:12px;border:1px solid #e8cbd2;background:#fff;color:#541322}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.card{border:1px solid white;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.72);box-shadow:0 8px 24px #65001612;cursor:pointer}
+.poster{aspect-ratio:3/4;display:grid;place-items:center;position:relative;color:#fff;font:70px Georgia,serif;background:linear-gradient(145deg,#f4dce2,#c54a66 48%,#650016)}
+.card:nth-child(2) .poster{background:linear-gradient(145deg,#fff0f2,#a64c66,#460016)}
+.card:nth-child(3) .poster{background:linear-gradient(145deg,#f7e7e3,#c1818d,#78152c)}
+.card:nth-child(4) .poster{background:linear-gradient(145deg,#fbe8ed,#d52b50,#570018)}
+.poster:before{content:"";position:absolute;inset:12px;border:1px solid #ffffffa8;border-radius:12px}
+.poster .free{position:absolute;left:10px;top:10px;border-radius:20px;background:#fff;color:#a00021;padding:6px 8px;font:9px Arial;font-weight:bold}
+.info{padding:13px}
+.info h3{font:19px Georgia,serif;margin:0 0 6px;color:#681326}
+.info p{font-size:12px;color:#8b747a;margin:0}
+.vip{padding:30px;border-radius:23px;background:linear-gradient(110deg,#680018,#bd1235);color:white;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.vip h2{font:32px Georgia,serif;margin:0 0 8px}
+.vip p{font-size:13px;color:#ffe1e7}
+.price{font:30px Georgia,serif;white-space:nowrap}
+.price small{font:12px Arial}
+footer{margin-top:55px;padding:30px;text-align:center;background:#fff9;border-top:1px solid white;color:#886e75}
+.footer-logo{font:30px Georgia,serif;letter-spacing:4px;color:var(--red)}
+.notice{font-size:11px;color:#927c82;line-height:1.5}
+@media(max-width:800px){
+.nav{flex-wrap:wrap;gap:10px}
+.logo{font-size:25px}
+nav{order:3;width:100%;justify-content:center;flex-wrap:wrap}
+nav a{font-size:12px;padding:8px}
+.search{margin-left:auto;width:140px}
+.search input{width:95px}
+.hero{min-height:320px;padding:35px 25px}
+.hero:after{right:-15%;opacity:.09}
+.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.heading h2{font-size:27px}
+.vip{display:block;text-align:center}
+.price{margin:16px 0}
+.lang-panel>div{flex:1 1 100%}
+.lang-panel select{width:100%}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="nav">
+<a class="logo" href="#">VELORIA<small>BL DRAMA PLATFORMU</small></a>
+<nav>
+<a class="active" href="#anasayfa">Ana Sayfa</a>
+<a href="#dramalar">BL Dramaları</a>
+<a href="#diller">Dil Seçenekleri</a>
+<a href="#vip">VIP</a>
+</nav>
+<div class="search">⌕ <input id="search" placeholder="Drama ara..."></div>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+<section class="hero" id="anasayfa">
+<div class="hero-copy">
+<div class="eyebrow">BOYS' LOVE · DÜNYA DRAMALARI</div>
+<h1>VELORIA</h1>
+<p>En sevdiğin yabancı BL hikâyelerini tek bir yerde keşfet. VELORIA'nın romantik ve etkileyici hikâyeler dünyasına hoş geldin.</p>
+<a class="btn" href="#dramalar">BL Dramalarını Keşfet　›</a>
+</div>
+</section>
+
+<section class="section" id="diller">
+<div class="heading">
+<div>
+<div class="eyebrow">KİŞİSELLEŞTİR</div>
+<h2>Dil Tercihleri</h2>
+<p>Site dili ve izleme altyazısı birbirinden bağımsızdır.</p>
+</div>
+</div>
+<div class="lang-panel">
+<div>
+<label for="siteLang">Site Dili</label>
+<select id="siteLang">
+<option>Türkçe</option>
+<option>English</option>
+<option>العربية</option>
+<option>Español</option>
+<option>Français</option>
+<option>Deutsch</option>
+<option>Português</option>
+<option>Русский</option>
+<option>한국어</option>
+<option>日本語</option>
+</select>
+</div>
+<div>
+<label for="subLang">Altyazı Dili</label>
+<select id="subLang">
+<option>Türkçe</option>
+<option>English</option>
+<option>العربية</option>
+<option>Español</option>
+<option>Français</option>
+<option>Deutsch</option>
+<option>Português</option>
+<option>Русский</option>
+<option>한국어</option>
+<option>日本語</option>
+<option>Altyazısız</option>
+</select>
+</div>
+</div>
+<p class="notice">Dil menüleri arayüz taslağıdır. Gerçek site çevirileri ve her drama için senkronize altyazı dosyaları ayrıca eklenmelidir.</p>
+</section>
+
+<section class="section" id="dramalar">
+<div class="heading">
+<div>
+<div class="eyebrow">VELORIA SEÇKİSİ</div>
+<h2>Popüler BL Dramaları</h2>
+<p>Yabancı BL yapımlarından seçkiler.</p>
+</div>
+</div>
+<div class="cards" id="cards">
+<article class="card" data-name="Yabancı BL 01">
+<div class="poster">♡<span class="free">1–5 ÜCRETSİZ</span></div>
+<div class="info"><h3>Yabancı BL 01</h3><p>Romantik · BL</p></div>
+</article>
+<article class="card" data-name="Yabancı BL 02">
+<div class="poster">✦<span class="free">1–5 ÜCRETSİZ</span></div>
+<div class="info"><h3>Yabancı BL 02</h3><p>Romantik · BL</p></div>
+</article>
+<article class="card" data-name="Yabancı BL 03">
+<div class="poster">❀<span class="free">1–5 ÜCRETSİZ</span></div>
+<div class="info"><h3>Yabancı BL 03</h3><p>Dram · BL</p></div>
+</article>
+<article class="card" data-name="Yabancı BL 04">
+<div class="poster">❦<span class="free">1–5 ÜCRETSİZ</span></div>
+<div class="info"><h3>Yabancı BL 04</h3><p>Romantik · BL</p></div>
+</article>
+</div>
+</section>
+
+<section class="section" id="vip">
+<div class="vip">
+<div>
+<h2>VELORIA VIP</h2>
+<p>İlk 5 bölüm ücretsiz. 6. bölüm ve sonrası VIP üyeliğe özel.</p>
+</div>
+<div>
+<div class="price">500 TL <small>/ 7 gün</small></div>
+<button class="btn" onclick="alert('Ödeme sistemi henüz bağlanmadı. Bu buton şimdilik taslak amaçlıdır.')">VIP Üyeliği</button>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="footer-logo">VELORIA</div>
+<p>BL hikâyelerinin dünyası.</p>
+<p>© 2026 VELORIA</p>
+</footer>
+
+<script>
+function applyFilters(){
+const q=document.getElementById('search').value.toLocaleLowerCase('tr');
+document.querySelectorAll('.card').forEach(card=>{
+const textOK=card.dataset.name.toLocaleLowerCase('tr').includes(q);
+card.style.display=textOK?'':'none';
+});
+}
+document.getElementById('search').addEventListener('input',applyFilters);
+</script>
+</body>
+</html>
